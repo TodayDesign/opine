@@ -73,9 +73,6 @@ module.task([], function() {
 
     return gulp.src(sources)
         .pipe(sasspipe)
-        .pipe(postcss([
-
-        ])
         .pipe(cssnano())
         .pipe(gulp.dest(dest))
         .pipe(module.size());
@@ -84,26 +81,21 @@ module.task([], function() {
 ```
 
 Actions like minifying css and including sourcemaps should be governed by
-`opine.getConfig('debug')` rather than 
-`opine.getConfig('styles.minify')` to avoid users having to change a whole
-bunch of config to set up a production vs debug build. 
+`opine.getConfig('debug')` rather than `module.getConfig('minify')` to avoid 
+users having to change a whole bunch of config to set up a production vs debug 
+build. 
 
 Extra config that is really required for basic functionality of the module
 (for example, include paths, which are needed but different for every project)
-should be accessed by `opine.getConfig('module.identifier', 'sane default')`.
-
-*Reading from configs should be done outside of task scope.* If all of the calls
-to `opine.getSource` et al are performed before any tasks are executed,
-then fully populated default configuration files can be automatically generated,
-saving having to hunt around for missing configuration values.
+should be accessed by `module.getConfig('module.identifier', 'sane default')`.
 
 The whole point of this module is to reduce the amount of boilerplate/setup 
-time, so it's okay to be a little didactic. If a user has a task that really
+time, so it's okay to be didactic. If a user has a task that really
 does need that extra config, they can just write a gulp task themselves.
 
 Tasks should add themselves to the opine build, develop and watch lists as
-appropriate, via `opine.addBuild`, `opine.addDevelop` and 
-`opine.addWatch` lists respectively. All of the build tasks will be added
+appropriate, via `module.addBuild`, `module.addDevelop` and 
+`module.addWatch` lists respectively. All of the build tasks will be added
 as a dependency to `gulp build`, while all of the `develop` tasks will be 
 executed (along with the `watch` tasks) as part of `gulp develop`.
 
