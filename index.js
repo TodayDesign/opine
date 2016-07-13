@@ -38,7 +38,7 @@ function opine() {
 
     // create watches on all files that need them
     gulp.task('watch', function(done) {
-        for(var i = 0; i < task_altwatch; ++i) {
+        for(var i = 0; i < task_altwatch.length; ++i) {
             gulp.start(task_altwatch[i]);
         }
         for(var i = 0; i < task_watches.length; ++i) {
