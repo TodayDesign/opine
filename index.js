@@ -20,7 +20,7 @@ function opine() {
     var parentDir = path.dirname(module.parent.filename);
     var options = {
         DEBUG: false,
-        pattern: ['gulp-opine-*', '!gulp-opine'],
+        pattern: ['gulp-opine-*', 'opine-*', '!gulp-opine'],
         lazy: false,
         config: findup(parentDir, 'package.json') + '/package.json'
     };
