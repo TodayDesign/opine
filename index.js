@@ -179,7 +179,7 @@ opine.module = function(name) {
             }
         },
 
-        getSource: function(extensions) {
+        getSources: function(extensions) {
             return opine.getSource(name, extensions);
         },
         getDest: function() {
