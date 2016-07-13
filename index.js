@@ -24,7 +24,6 @@ module.addBuild();
 module.addWatch(sources);
 
 module.task(function() {
-    console.log(sources);
 	return gulp.src(sources)
     	.pipe(modernizr({
     		options: options
