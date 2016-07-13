@@ -1,6 +1,6 @@
 {
   "name": "opine-vendor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A gulp-opine module to concatenate vendor scripts into a single file",
   "main": "index.js",
   "scripts": {
