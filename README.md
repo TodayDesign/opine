@@ -1,6 +1,8 @@
 # Opine  :point_up:
 
-Opine is a system for using common gulptasks. This is the core module.
+Opine is a system for using common gulptasks. This is the core module. It does
+nothing by itself, but once some extra modules are installed it forms a pretty 
+nice drop-in minimal-config build system for common web development tasks.
 
 ## Usage
 
@@ -12,14 +14,11 @@ require('gulp-opine')();
 
 ```
 
-Opine does nothing by itself, but once some extra modules are installed it
-forms a pretty nice drop-in build system that doesn't require any configuration.
-
-For example, run:
+To get you started with some example modules, try running the following:
 
 ```
 npm init
-npm install --save-dev gulp-opine-styles gulp-opine-scripts
+npm install --save-dev opine-styles opine-scripts
 gulp build
 ```
 
@@ -27,7 +26,8 @@ Gulp will compile all the sass files in `frontend/styles` into `public/styles/ma
 (functionality from opine-styles) and compile all the js modules under 
 `frontend/scripts` into `public/scripts/main.js` (opine-scripts).
 
-To alter the configuration, run `gulp config-defaults` to see which config
+To alter the configuration (for example, if you keep your style sources somewhere 
+other than `frontend/styles`), run `gulp config-defaults` to see which config
 keys are being read, and then set those keys in `config/default.json` (you might
 have to create this file yourself if one doesn't exist already -- documentation
 for config is available in the [config](https://github.com/lorenwest/node-config)
