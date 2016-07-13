@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "git://github.com/studiothick/opine-modernizr.git",
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },
