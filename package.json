@@ -19,10 +19,12 @@
     "url": "https://github.com/studiothick/gulp-opine/issues"
   },
   "homepage": "https://github.com/studiothick/gulp-opine#readme",
+  "peerDependencies": {
+    "gulp": "^3.9.1"
+  },
   "dependencies": {
     "config": "^1.21.0",
     "findup": "^0.1.5",
-    "gulp": "^3.9.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-size": "^2.1.0"
   }
