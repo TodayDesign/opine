@@ -9,10 +9,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "gulp-opine": ">=0.7.0"
+  },
   "dependencies": {
     "gulp-cache": "^0.4.5",
     "gulp-imagemin": "^3.0.1",
     "gulp-size": "^2.1.0",
-    "gulp-opine": "^0.3.0"
   }
 }
