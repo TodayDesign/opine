@@ -1,6 +1,6 @@
 {
   "name": "opine-icons",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A module to make sprites out of svg icons",
   "main": "index.js",
   "scripts": {
