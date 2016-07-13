@@ -47,6 +47,7 @@ function opine() {
                 gulp.watch(w.path, w.task);
             }
         }
+        // don't call done() -- a watch is never done! it's watching!
     });
 
     // create develop task, to build everything and then watch
@@ -57,15 +58,23 @@ function opine() {
         gulp.start('watch');
     });
 
+    // task to print out all config variables that are using defaults
     gulp.task('config-defaults', function() {
         console.log(JSON.stringify(missingConfig, null, 4));
     });
 }
 
 //----------------------------------------------------------
-// Exported extra functions and objects.
-// These are designed to be used by opine-* modules
+//----------------------------------------------------------
+// Below are exported extra functions and objects.
+// These are designed to be used by opine-* modules rather than
+// being called by end users directly
+//----------------------------------------------------------
+//----------------------------------------------------------
 
+// utility function to recursively get a value from an object
+// via dot-separated string ID (eg 'opine.module.value') with
+// the ability to use a default value if the key is not configured
 function index(obj,is, value) {
     if (typeof is == 'string') {
         return index(obj,is.split('.'), value);
@@ -83,9 +92,11 @@ function index(obj,is, value) {
     }
 }
 
+// state variables to track which keys are using default values
 var missingConfig = {};
 var requiredConfig = null;
 
+// function to get non-module-specific sources
 opine.getSources = function(id, extensions) {
     var base = opine.getConfig('base.source', 'frontend');
     var dir = opine.getConfig(id + '.source', base + '/' + id);
@@ -102,16 +113,20 @@ opine.getSources = function(id, extensions) {
     });
 }
 
+// function to get non-module-specific targets
 opine.getDest = function(id) {
     var base = opine.getConfig('base.dest', 'public');
     return opine.getConfig(id + '.dest', base + '/' + id);
 }
 
+// function to get global configs
 opine.getConfig = function(id, fallback) {
     var tid = 'opine.' + id;
     if(config.has(tid)) {
+        // key is configured: use it
         return config.get(tid);
     } else if(typeof(fallback) === 'undefined') {
+        // key is not configured and no default given: error
         index(missingConfig, id, 'REQUIRED');
         if(!requiredConfig) {
             requiredConfig = {};
@@ -119,15 +134,24 @@ opine.getConfig = function(id, fallback) {
         index(requiredConfig, id, 'REQUIRED');
         return 'REQUIRED';
     } else {
+        // key is not configured but we have a default: use that
         index(missingConfig, id, fallback);
         return fallback;
     }
 };
 
+// opine-* modules should use this to indicate that the
+// task they define should be executed as part of build
 opine.addBuild = function(task) {
     task_builds.push(task);
 };
 
+// opine-* modules should use this to indicate that the
+// task they define should be executed as part of the 'develop'
+// task (build & watch)
+// This one is probably not going to crop up much, as putting
+// a task in watch and/or build will make adding it to develop
+// unnecessary.
 opine.addDevelop = function(task) {
     task_develops.push(task);
 };
@@ -141,6 +165,8 @@ opine.addWatch = function(path, task) {
     });
 };
 
+// function to generate an object with modularised versions of 
+// the above functions. It's kind of a weak implementation of currying.
 opine.module = function(name) {
     return {
         name: name,
