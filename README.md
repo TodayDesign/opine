@@ -14,8 +14,20 @@ require('gulp-opine')();
 
 ## Usage
 
-Three tasks are included that can be run using `gulp`, `gulp build` and
-`gulp develop`. 
+Opine does nothing by itself, but once some extra modules are installed it
+forms a pretty nice drop-in build system that doesn't require any configuration.
+
+For example, run:
+
+```
+npm init
+npm install --save-dev gulp-opine-styles gulp-opine-scripts
+gulp build
+```
+
+Without writing a bunch of build stuff, gulp will compile all the sass files
+in `frontend/styles` into `public/styles/main.css` and compile all the js 
+modules under `frontend/scripts` into `public/scripts/main.js`. 
 
 ## Writing modules
 
