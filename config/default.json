@@ -1,0 +1,10 @@
+{
+    "opine": {
+        "vendor": {
+            "includes": [
+                    "includes/test.js",
+                    "includes/test2.js"
+                ]
+        }
+    }
+}
