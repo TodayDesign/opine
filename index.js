@@ -7,7 +7,7 @@ var gulpLoadPlugins = require('gulp-load-plugins');
 var size = require('gulp-size');
 
 var task_watches = [];
-var task_develops = [];
+var task_altwatch = [];
 var task_builds = [];
 
 //----------------------------------------------------------
@@ -38,6 +38,9 @@ function opine() {
 
     // create watches on all files that need them
     gulp.task('watch', function(done) {
+        for(var i = 0; i < task_altwatch; ++i) {
+            gulp.start(task_altwatch[i]);
+        }
         for(var i = 0; i < task_watches.length; ++i) {
             var w = task_watches[i];
             console.log('Watching', w.path, 'for', w.task);
@@ -52,9 +55,6 @@ function opine() {
 
     // create develop task, to build everything and then watch
     gulp.task('develop', ['build'], function() {
-        for(var i = 0; i < task_develops; ++i) {
-            gulp.start(task_develops[i]);
-        }
         gulp.start('watch');
     });
 
@@ -146,14 +146,10 @@ opine.addBuild = function(task) {
     task_builds.push(task);
 };
 
-// opine-* modules should use this to indicate that the
-// task they define should be executed as part of the 'develop'
-// task (build & watch)
-// This one is probably not going to crop up much, as putting
-// a task in watch and/or build will make adding it to develop
-// unnecessary.
-opine.addDevelop = function(task) {
-    task_develops.push(task);
+// opine-* modules should use this to add a watch task that
+// needs to run outside of the gulp.watch system (for eg watchify)
+opine.addAltWatch = function(task) {
+    task_altwatch.push(task);
 };
 
 // opine-* modules should use this to indicate that the
@@ -194,8 +190,8 @@ opine.module = function(name) {
         addBuild: function() {
             return opine.addBuild(name);
         },
-        addDevelop: function() {
-            return opine.addDevelop(name);
+        addAltWatch: function() {
+            return opine.addAltWatch(name);
         },
         size: function() {
             return size({ title: name });
