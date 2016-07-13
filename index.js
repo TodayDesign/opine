@@ -180,7 +180,7 @@ opine.module = function(name) {
         },
 
         getSources: function(extensions) {
-            return opine.getSource(name, extensions);
+            return opine.getSources(name, extensions);
         },
         getDest: function() {
             return opine.getDest(name);
