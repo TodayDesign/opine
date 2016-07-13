@@ -1,0 +1,18 @@
+{
+  "name": "opine-images",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-cache": "^0.4.5",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-size": "^2.1.0",
+    "gulp-opine": "^0.3.0"
+  }
+}
