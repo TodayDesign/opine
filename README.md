@@ -2,7 +2,7 @@
 
 Opine is a system for using common gulptasks. This is the core module.
 
-## Installation
+## Usage
 
 Add the following to your `gulpfile.js`.
 
@@ -11,8 +11,6 @@ Add the following to your `gulpfile.js`.
 require('gulp-opine')();
 
 ```
-
-## Usage
 
 Opine does nothing by itself, but once some extra modules are installed it
 forms a pretty nice drop-in build system that doesn't require any configuration.
@@ -25,13 +23,19 @@ npm install --save-dev gulp-opine-styles gulp-opine-scripts
 gulp build
 ```
 
-Without writing a bunch of build stuff, gulp will compile all the sass files
-in `frontend/styles` into `public/styles/main.css` and compile all the js 
-modules under `frontend/scripts` into `public/scripts/main.js`. 
+Gulp will compile all the sass files in `frontend/styles` into `public/styles/main.css`
+(functionality from opine-styles) and compile all the js modules under 
+`frontend/scripts` into `public/scripts/main.js` (opine-scripts).
 
-## Writing modules
+To alter the configuration, run `gulp config-defaults` to see which config
+keys are being read, and then set those keys in `config/default.json` (you might
+have to create this file yourself if one doesn't exist already -- documentation
+for config is available in the [config](https://github.com/lorenwest/node-config)
+module.)
 
-A module should perform a single task.
+## Writing your own modules for opine
+
+A module should read some local configuration and then define a single gulptask.
 
 ```js
 
@@ -44,6 +48,8 @@ var opine = require('gulp-opine');
 var module = opine.module('styles');
 
 ```
+
+### Read local config
 
 Configurability should be fairly limited, but definitely allow for 
 configuration of sources and destinations.
@@ -72,7 +78,11 @@ module.addBuild();
 
 // indicate that this task should run if one of the sources changes
 module.addWatch(sources);
+```
 
+### Define the task
+
+```js
 // now define the actual task as you usually would if it were in a gulpfile
 // note that this is identical to gulp.task(module.name, [], function() { ... });
 module.task([], function() {
