@@ -1,6 +1,6 @@
 {
   "name": "opine-styles",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A module for gulp-opine that compiles stylesheets with libsass",
   "main": "index.js",
   "repository": "git://github.com/studiothick/opine-styles",
