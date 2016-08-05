@@ -14,7 +14,18 @@ if(typeof(directories) === 'string') {
 module.addAltWatch();
 
 module.task(function(done) {
-    var server = livereload.createServer();
+    var server = livereload.createServer({
+        exts: [
+            // styles
+            'css', 
+            // templates
+            'html', 'ss', 
+            // code
+            'js', 'php', 'php5', 'py', 'rb', 'erb', 'coffee',
+            // images
+            'png', 'gif', 'jpg', 'jpeg', 'svg'
+        ] 
+    });
     console.log("LiveReload watching: " + directories.join(', '));
     server.watch(directories);
 });
