@@ -1,6 +1,6 @@
 {
   "name": "opine-styles",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A module for gulp-opine that compiles stylesheets with libsass",
   "main": "index.js",
   "repository": "git://github.com/studiothick/opine-styles",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.6",
-    "css-mqpacker": "^5.0.1",
     "gulp-clean-css": "^2.0.12",
     "gulp-postcss": "^6.1.1",
     "gulp-sass": "^2.3.1",
