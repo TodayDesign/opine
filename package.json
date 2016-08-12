@@ -1,0 +1,26 @@
+{
+  "name": "opine-serve",
+  "version": "0.1.0",
+  "description": "A gulp-opine module for locally serving a static directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/studiothick/opine-serve.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/studiothick/opine-serve/issues"
+  },
+  "homepage": "https://github.com/studiothick/opine-serve#readme",
+  "peerDependencies": {
+    "gulp-opine": ">=0.7.0"
+  },
+  "dependencies": {
+    "finalhandler": "^0.5.0",
+    "serve-static": "^1.11.1"
+  }
+}
