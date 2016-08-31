@@ -1,0 +1,22 @@
+{
+  "name": "opine-silverstripe-build",
+  "version": "0.1.0",
+  "description": "An opine module to ssh in to a remote Silverstripe deployment and run /dev/build",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/StudioThick/opine-silverstripe-build.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StudioThick/opine-silverstripe-build/issues"
+  },
+  "peerDependencies": {
+    "gulp-opine": ">=0.7.0"
+  },
+  "homepage": "https://github.com/StudioThick/opine-silverstripe-build#readme"
+}
