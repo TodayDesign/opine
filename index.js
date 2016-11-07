@@ -33,7 +33,7 @@ module.task(function() {
         ]));
 
     if(!debug) {
-        b = b.pipe(cleanCSS({ compatibility: 'ie8' }))
+        b = b.pipe(cleanCSS({ compatibility: 'ie8', processImport: false }));
     }
 
     return b
