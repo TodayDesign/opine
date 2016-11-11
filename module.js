@@ -37,34 +37,34 @@ module.exports = function(opine) {
     };
 
     Module.prototype.getSources = function(extensions) {
-        return opine.getSources(name, extensions);
+        return opine.getSources(this.name, extensions);
     };
 
     Module.prototype.getDest = function() {
-        return opine.getDest(name);
+        return opine.getDest(this.name);
     };
 
     Module.prototype.getConfig = function(id, fallback) {
-        return opine.getConfig(name + '.' + id, fallback);
+        return opine.getConfig(this.name + '.' + id, fallback);
     };
 
     Module.prototype.addWatch = function(path) {
-        opine.addWatch(path, name);
+        opine.addWatch(path, this.name);
         return this;
     };
 
     Module.prototype.addBuild = function() {
-        opine.addBuild(name);
+        opine.addBuild(this.name);
         return this;
     };
 
     Module.prototype.addAltWatch = function() {
-        opine.addAltWatch(name);
+        opine.addAltWatch(this.name);
         return this;
     };
 
     Module.prototype.size = function() {
-        return size({ title: name });
+        return size({ title: this.name });
     };
 
     return Module;
