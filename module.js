@@ -11,12 +11,22 @@ module.exports = function(opine) {
     };
 
     Module.prototype.task = function(arg0, arg1) {
+        // check parameters -- this function mirrors gulp.task
+        var execute = null;
         if(arguments.length == 1) {
-            this.execute = arg0;
+            execute = arg0;
         } else if(arguments.length == 2) {
-            this.execute = arg1;
             this.prereqs = this.prereqs.concat(arg0);
+            execute = arg1;
         }
+
+        if(execute) {
+            if(this.execute) {
+                console.warn('WARNING: Execute function for task "' + this.name + '" already exists. Overwriting...');
+            }
+            this.execute = execute;
+        }
+
         return this;
     };
 

@@ -42,6 +42,7 @@ function execute_opine() {
     // create default gulptask
     opine.module('build').depends(task_builds);
     opine.module('default').depends('build');
+    opine.module('deploy').depends('build');
 
     // knit together all post-dependencies
     var keys = Object.keys(tasks);
@@ -191,9 +192,13 @@ opine.addWatch = function(path, task) {
 // function to generate an object with modularised versions of 
 // the above functions. It's kind of a weak implementation of currying.
 opine.module = function(name) {
-    var m = new Module(name);
-    tasks[name] = m;
-    return m;
+    if(tasks[name] !== undefined) {
+        return tasks[name];
+    } else {
+        var m = new Module(name);
+        tasks[name] = m;
+        return m;
+    }
 };
 
 module.exports = opine;
