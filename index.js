@@ -4,11 +4,6 @@ var gulp = require('gulp');
 var path = require('path');
 var findup = require('findup').sync;
 var gulpLoadPlugins = require('gulp-load-plugins');
-var size = require('gulp-size');
-
-var task_watches = [];
-var task_altwatch = [];
-var task_builds = [];
 
 //----------------------------------------------------------
 // Main opine function.
@@ -16,6 +11,18 @@ var task_builds = [];
 // It will add all discovered opine tasks and populate a 'watch'
 // task.
 function opine() {
+    execute_opine();
+}
+
+// inject hoisted function as dependency
+var Module = require('./module')(opine);
+
+var tasks = {};
+var task_watches = [];
+var task_altwatch = [];
+var task_builds = [];
+
+function execute_opine() {
     // import all modules named "opine-*"
     var parentDir = path.dirname(module.parent.filename);
     var options = {
@@ -33,8 +40,27 @@ function opine() {
     }
 
     // create default gulptask
-    gulp.task('build', task_builds);
-    gulp.task('default', ['build']);
+    opine.module('build').depends(task_builds);
+    opine.module('default').depends('build');
+
+    // knit together all post-dependencies
+    var keys = Object.keys(tasks);
+    keys.forEach(function(k) {
+        var module = tasks[k];
+        module.postreqs.forEach(function(post) {
+            var prereqModule = tasks[post];
+            if(prereqModule) {
+                prereqModule.depends(module.name);
+            }
+        });
+    });
+
+    // create all tasks
+    var noop = function() {};
+    keys.forEach(function(k) {
+        var module = tasks[k];
+        gulp.task(module.name, module.prereqs, module.execute || noop);
+    });
 
     // create watches on all files that need them
     gulp.task('watch', function(done) {
@@ -96,29 +122,6 @@ function index(obj,is, value) {
 var missingConfig = {};
 var requiredConfig = null;
 
-// function to get non-module-specific sources
-opine.getSources = function(id, extensions) {
-    var base = opine.getConfig('base.source', 'frontend');
-    var dir = opine.getConfig(id + '.source', base + '/' + id);
-    extensions = opine.getConfig(id + '.extensions', extensions || '');
-    if(typeof(extensions) == 'string') {
-        extensions = [extensions];
-    }
-    return (extensions || []).map(function(e) {
-        if(e[0] === '!') {
-            return '!' + dir + '/**/*' + e.slice(1);
-        } else {
-            return dir + '/**/*' + e; 
-        }
-    });
-}
-
-// function to get non-module-specific targets
-opine.getDest = function(id) {
-    var base = opine.getConfig('base.dest', 'public');
-    return opine.getConfig(id + '.dest', base + '/' + id);
-}
-
 // function to get global configs
 opine.getConfig = function(id, fallback) {
     var tid = 'opine.' + id;
@@ -139,6 +142,30 @@ opine.getConfig = function(id, fallback) {
         return fallback;
     }
 };
+
+var base_source = opine.getConfig('base.source', 'frontend');
+var base_dest = opine.getConfig('base.dest', 'public');
+
+// function to get non-module-specific sources
+opine.getSources = function(id, extensions) {
+    var dir = opine.getConfig(id + '.source', base_source + '/' + id);
+    extensions = opine.getConfig(id + '.extensions', extensions || '');
+    if(typeof(extensions) == 'string') {
+        extensions = [extensions];
+    }
+    return (extensions || []).map(function(e) {
+        if(e[0] === '!') {
+            return '!' + dir + '/**/*' + e.slice(1);
+        } else {
+            return dir + '/**/*' + e; 
+        }
+    });
+}
+
+// function to get non-module-specific targets
+opine.getDest = function(id) {
+    return opine.getConfig(id + '.dest', base_dest + '/' + id);
+}
 
 // opine-* modules should use this to indicate that the
 // task they define should be executed as part of build
@@ -164,39 +191,9 @@ opine.addWatch = function(path, task) {
 // function to generate an object with modularised versions of 
 // the above functions. It's kind of a weak implementation of currying.
 opine.module = function(name) {
-    return {
-        name: name,
-        
-        task: function(arg0, arg1) {
-            if(arguments.length == 1) {
-                return gulp.task(name, [], arg0);
-            } else if(arguments.length == 2) {
-                return gulp.task(name, arg0, arg1);
-            }
-        },
-
-        getSources: function(extensions) {
-            return opine.getSources(name, extensions);
-        },
-        getDest: function() {
-            return opine.getDest(name);
-        },
-        getConfig: function(id, fallback) {
-            return opine.getConfig(name + '.' + id, fallback);
-        },
-        addWatch: function(path) {
-            return opine.addWatch(path, name);
-        },
-        addBuild: function() {
-            return opine.addBuild(name);
-        },
-        addAltWatch: function() {
-            return opine.addAltWatch(name);
-        },
-        size: function() {
-            return size({ title: name });
-        }
-    };
+    var m = new Module(name);
+    tasks[name] = m;
+    return m;
 };
 
 module.exports = opine;
