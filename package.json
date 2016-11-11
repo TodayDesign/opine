@@ -1,6 +1,6 @@
 {
   "name": "gulp-opine",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "The core module for a system of common gulp tasks",
   "main": "index.js",
   "scripts": {
