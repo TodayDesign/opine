@@ -20,13 +20,16 @@ var options = module.getConfig('options', [
     			"testProp"
     		]);
 
+var excludeTests = module.getConfig('excludeTests', ['hidden']);
+
 module.addBuild();
 module.addWatch(sources);
 
 module.task(function() {
 	return gulp.src(sources)
     	.pipe(modernizr({
-    		options: options
+    		options: options,
+            excludeTests: excludeTests
     	}))
         .pipe(uglify())
     	.pipe(gulp.dest(dest))
