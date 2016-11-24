@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var opine = require('gulp-opine');
 
 var browserify = require('browserify');
-var watchify = require('watchify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var duration = require('gulp-duration');
@@ -20,7 +19,7 @@ var entry = module.getConfig('entry', basedir + 'main.js');
 var debug = module.getConfig('debug', true);
 
 module.addBuild();
-opine.addAltWatch('watch-scripts');
+module.addWatch(sources);
 
 function printerr(e) {
     console.log(e);
@@ -43,17 +42,11 @@ function rebundle(bundler) {
         .pipe(module.size());
 }
 
+var bundler = null;
 module.task(function() {
-    var bundler = browserify(entry, { debug: debug });
+    if(!bundler) {
+        bundler = browserify(entry, { debug: debug });
+    }
     return rebundle(bundler);
-});
-
-gulp.task('watch-scripts', [], function(done) {
-    var bundler = browserify(entry, { debug: debug });
-    var watcher = watchify(bundler);
-    rebundle(watcher);
-    watcher.on('update', function() {
-        rebundle(watcher);
-    });
 });
 
