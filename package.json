@@ -1,6 +1,6 @@
 {
   "name": "opine-silverstripe-build",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An opine module to ssh in to a remote Silverstripe deployment and run /dev/build",
   "main": "index.js",
   "scripts": {
