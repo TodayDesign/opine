@@ -4,6 +4,8 @@ var gulp = require('gulp');
 var spawn = require('child_process').spawn;
 
 var module = opine.module('silverstripe-build');
+module.dependencyOf('deploy');
+module.depends('rsync');
 
 var host = opine.getConfig('rsync.host');
 var user = opine.getConfig('rsync.user', 'deploy');
