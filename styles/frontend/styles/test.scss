@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('/css/type/sourcesanspro-light-webfont.woff2') format('woff2'),
+         url('/css/type/sourcesanspro-light-webfont.woff') format('woff'),
+         url('/css/type/sourcesanspro-light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    background: #ccc;
+}
+
+.foo::before {
+  content: "foo on small";
+}
+
+@media screen and (min-width: 769px) {
+  .foo::before {
+    content: "foo on medium";
+  }
+}
+
+.bar::before {
+  content: "bar on small";
+}
+
+@media screen and (min-width: 769px) {
+  .bar::before {
+    content: "bar on medium";
+  }
+}
