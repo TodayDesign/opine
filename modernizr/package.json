@@ -1,0 +1,19 @@
+{
+  "name": "opine-modernizr",
+  "version": "0.1.2",
+  "description": "A gulp-opine task to generate a modernizr script",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git://github.com/studiothick/opine-modernizr.git",
+  "peerDependencies": {
+    "gulp-opine": ">=0.7.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-modernizr": "^1.0.0-alpha",
+    "gulp-uglify": "^1.5.4"
+  }
+}
