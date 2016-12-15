@@ -1,0 +1,25 @@
+{
+  "name": "opine-vendor",
+  "version": "0.2.0",
+  "description": "A gulp-opine module to concatenate vendor scripts into a single file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/studiothick/opine-vendor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/studiothick/opine-vendor/issues"
+  },
+  "homepage": "https://github.com/studiothick/opine-vendor#readme",
+  "peerDependencies": {
+    "gulp-opine": ">=0.7.0"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.6.0"
+  }
+}
