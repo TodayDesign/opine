@@ -1,0 +1,19 @@
+
+body {
+    background-color: #ccf;
+}
+
+div {
+    width: 70%;
+    margin: auto;
+    background-color: #fad;
+    padding: 2em;
+}
+
+h1 {
+    font-family: monospace;
+}
+
+p {
+    color: #c0c;
+}
