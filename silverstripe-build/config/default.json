@@ -1,0 +1,9 @@
+{
+    "opine": {
+        "rsync": {
+            "user": null,
+            "host": "localhost",
+            "dest": "/tmp/opine-rsync"
+        }
+    }
+}
