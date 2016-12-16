@@ -1,0 +1,12 @@
+{
+  "name": "opine",
+  "version": "1.0.0",
+  "description": "A monorepository for all official opine modules",
+  "main": "index.js",
+  "repository": {
+    "url": "git://github.com/StudioThick/opine.git",
+    "type": "git"
+  },
+  "author": "Thick",
+  "license": "MIT"
+}

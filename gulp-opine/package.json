@@ -6,19 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/studiothick/gulp-opine.git"
-  },
+  "repository": "https://github.com/StudioThick/opine/tree/master/gulp-opine",
   "keywords": [
     "gulp"
   ],
   "author": "Tom McLean",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/studiothick/gulp-opine/issues"
+    "url": "https://github.com/studiothick/opine/issues"
   },
-  "homepage": "https://github.com/studiothick/gulp-opine#readme",
+  "homepage": "https://github.com/studiothick/opine#readme",
   "peerDependencies": {
     "gulp": "^3.9.1"
   },
