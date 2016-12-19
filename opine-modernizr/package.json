@@ -16,5 +16,8 @@
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-uglify": "^1.5.4"
   },
-  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-modernizr#readme"
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-modernizr#readme",
+  "bugs": {
+    "url": "https://github.com/StudioThick/opine/issues"
+  }
 }

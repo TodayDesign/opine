@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/studiothick/opine-vendor/issues"
+    "url": "https://github.com/StudioThick/opine/issues"
   },
   "homepage": "https://github.com/StudioThick/opine/tree/master/opine-vendor#readme",
   "peerDependencies": {

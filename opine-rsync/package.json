@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/StudioThick/opine-rsync/issues"
+    "url": "https://github.com/StudioThick/opine/issues"
   },
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"

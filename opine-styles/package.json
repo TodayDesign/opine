@@ -21,5 +21,8 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0"
   },
-  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-styles#readme"
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-styles#readme",
+  "bugs": {
+    "url": "https://github.com/StudioThick/opine/issues"
+  }
 }
