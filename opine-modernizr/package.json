@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "git://github.com/studiothick/opine-modernizr.git",
+  "repository": "https://github.com/StudioThick/opine/tree/master/opine-modernizr",
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },
@@ -15,5 +15,6 @@
   "dependencies": {
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-uglify": "^1.5.4"
-  }
+  },
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-modernizr#readme"
 }

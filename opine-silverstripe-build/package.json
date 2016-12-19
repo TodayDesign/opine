@@ -6,10 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/StudioThick/opine-silverstripe-build.git"
-  },
+  "repository": "https://github.com/StudioThick/opine/tree/master/opine-silverstripe-build",
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,5 +15,5 @@
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },
-  "homepage": "https://github.com/StudioThick/opine-silverstripe-build#readme"
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-silverstripe-build#readme"
 }

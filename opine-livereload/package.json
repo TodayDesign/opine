@@ -6,16 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/studiothick/opine-livereload.git"
-  },
+  "repository": "https://github.com/StudioThick/opine/tree/master/opine-livereload",
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/studiothick/opine-livereload/issues"
   },
-  "homepage": "https://github.com/studiothick/opine-livereload#readme",
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-livereload#readme",
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },

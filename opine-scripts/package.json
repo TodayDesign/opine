@@ -6,16 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/studiothick/opine-scripts.git"
-  },
+  "repository": "https://github.com/StudioThick/opine/tree/master/opine-scripts",
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/studiothick/opine-scripts/issues"
   },
-  "homepage": "https://github.com/studiothick/opine-scripts#readme",
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-scripts#readme",
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },

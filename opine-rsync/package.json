@@ -6,10 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/StudioThick/opine-rsync.git"
-  },
+  "repository": "https://github.com/StudioThick/opine/tree/master/opine-rsync",
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,7 +15,7 @@
   "peerDependencies": {
     "gulp-opine": ">=0.7.0"
   },
-  "homepage": "https://github.com/StudioThick/opine-rsync#readme",
+  "homepage": "https://github.com/StudioThick/opine/tree/master/opine-rsync#readme",
   "dependencies": {
     "gulp-rsync": "0.0.6"
   }
