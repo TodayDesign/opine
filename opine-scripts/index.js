@@ -6,6 +6,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var duration = require('gulp-duration');
 var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
 
 var module = opine.module('scripts');
 
@@ -22,7 +23,8 @@ module.addBuild();
 module.addWatch(sources);
 
 function printerr(e) {
-    console.log(e);
+    gutil.log(gutil.colors.yellow(e.message));
+    this.emit('end');
 }
 
 function rebundle(bundler) {
