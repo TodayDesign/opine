@@ -4,6 +4,8 @@ var gulp = require('gulp');
 var rsync = require('gulp-rsync');
 
 var module = opine.module('rsync');
+module.dependencyOf('deploy');
+module.depends('build');
 
 var host = module.getConfig('host');
 var user = module.getConfig('user', 'deploy');
