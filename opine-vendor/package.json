@@ -1,6 +1,6 @@
 {
   "name": "opine-vendor",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "A gulp-opine module to concatenate vendor scripts into a single file",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "gulp-opine": ">=0.7.0"
   },
   "dependencies": {
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^2.0.0"
   }
 }

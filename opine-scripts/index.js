@@ -17,7 +17,7 @@ var destfile = module.getConfig('target', 'main.js');
 
 var basedir = sources[0].replace(/\*\*\/\*.*/g, '');
 var entry = module.getConfig('entry', basedir + 'main.js');
-var debug = module.getConfig('debug', true);
+var debug = module.getConfig('debug', opine.getConfig('base.debug', true));
 
 module.addBuild();
 module.addWatch(sources);
