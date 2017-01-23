@@ -201,5 +201,19 @@ opine.module = function(name) {
     }
 };
 
+var handlers = {};
+
+opine.on = function(eventName, handler) {
+    handlers[eventName] = [].concat(handlers[eventName] || [], handler);
+};
+
+opine.fire = function(eventName, params) {
+    return (handlers[eventName] || []).map(h => {
+        return h(Object.assign({
+            module: 'global'
+        }, params));
+    });
+};
+
 module.exports = opine;
 

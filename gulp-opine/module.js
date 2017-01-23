@@ -77,6 +77,13 @@ module.exports = function(opine) {
         return size({ title: this.name });
     };
 
+    Module.prototype.fire = function(eventName, params) {
+        return opine.fire(eventName, Object.assign({
+            module: this.name
+        }, params));
+    };
+
     return Module;
 
 };
+
