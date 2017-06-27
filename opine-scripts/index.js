@@ -18,11 +18,12 @@ var destfile = module.getConfig('target', 'main.js');
 var basedir = sources[0].replace(/\*\*\/\*.*/g, '');
 var entry = module.getConfig('entry', basedir + 'main.js');
 var debug = module.getConfig('debug', opine.getConfig('base.debug', true));
+var multibundle = module.getConfig('multibundle', null);
 
 module.addBuild();
 module.addWatch(sources);
 
-function rebundle(bundler) {
+function rebundle(bundler, entry, target) {
     var hasError = false;
 
     var t = new Date().toTimeString();
@@ -33,8 +34,8 @@ function rebundle(bundler) {
             this.emit('end');
             hasError = true;
         })
-        .pipe(duration(t + ' Building'))
-        .pipe(source(destfile))
+        .pipe(duration(t + ' Building ' + entry))
+        .pipe(source(target))
         .pipe(buffer());
 
     if(!debug) {
@@ -51,12 +52,22 @@ function rebundle(bundler) {
         });
 }
 
-var bundler = null;
-module.task(function() {
+var bundlers = {};
+function bundle(entry, target) {
+    var bundler = bundlers[entry];
     if(!bundler) {
         bundler = browserify(entry, { debug: debug });
+        bundlers[entry] = bundler;
     }
-    return rebundle(bundler);
-});
+    return rebundle(bundler, entry, target);
+}
 
+
+module.task(function() {
+    if(multibundle) {
+        return multibundle.map(mb => bundle(mb.entry, mb.target));
+    } else {
+        return bundle(entry, destfile);
+    }
+});
 
