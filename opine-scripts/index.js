@@ -16,7 +16,7 @@ var dest = module.getDest();
 var destfile = module.getConfig('target', 'main.js');
 
 var basedir = sources[0].replace(/\*\*\/\*.*/g, '');
-var entry = module.getConfig('entry', basedir + 'main.js');
+var entry = basedir + module.getConfig('entry', 'main.js');
 var debug = module.getConfig('debug', opine.getConfig('base.debug', true));
 
 // optional fancier stuff
@@ -71,7 +71,9 @@ function bundle(entry, target) {
 
 module.task(function() {
     if(multibundle) {
-        return multibundle.map(mb => bundle(mb.entry, mb.target));
+        return multibundle
+            .map(mb => typeof mb === 'string' ? { entry: mb, target: mb } : mb)
+            .map(mb => bundle(basedir + mb.entry, mb.target));
     } else {
         return bundle(entry, destfile);
     }

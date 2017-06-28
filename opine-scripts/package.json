@@ -1,6 +1,6 @@
 {
   "name": "opine-scripts",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "A module to compile javascript with browserify",
   "main": "index.js",
   "scripts": {

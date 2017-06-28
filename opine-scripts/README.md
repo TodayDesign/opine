@@ -26,6 +26,23 @@ have been `require`d. Originally this module was written to use [watchify](https
 but we encountered issues with linux incompatibility and decided to switch this
 module over to use the same watch as the rest of the opine ecosystem.
 
+### Multiple entry points and targets
+
+The basic setup above accounts for a single entry point that bundles down to a
+single script. If you need multiple entry points, the following configuration
+will override the `entry` and `target` configuration values.
+
+```js
+opine: {
+    scripts: {
+        multibundle: [ 
+            { entry: 'form-entry.js', target: 'forms.js' },
+            'main.js'   // equivalent to { entry: 'main.js', target: 'main.js' }
+        ]
+    }
+}
+```
+
 ### Babelify
 
 If you want to apply Babelify transforms, configure `opine.scripts.transforms`
