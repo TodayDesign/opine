@@ -18,7 +18,10 @@ var destfile = module.getConfig('target', 'main.js');
 var basedir = sources[0].replace(/\*\*\/\*.*/g, '');
 var entry = module.getConfig('entry', basedir + 'main.js');
 var debug = module.getConfig('debug', opine.getConfig('base.debug', true));
+
+// optional fancier stuff
 var multibundle = module.getConfig('multibundle', null);
+var transforms = module.getConfig('transforms', null);
 
 module.addBuild();
 module.addWatch(sources);
@@ -57,6 +60,9 @@ function bundle(entry, target) {
     var bundler = bundlers[entry];
     if(!bundler) {
         bundler = browserify(entry, { debug: debug });
+        if(transforms) {
+            bundler.transform('babelify', { presets: transforms });
+        }
         bundlers[entry] = bundler;
     }
     return rebundle(bundler, entry, target);

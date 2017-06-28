@@ -26,7 +26,20 @@ have been `require`d. Originally this module was written to use [watchify](https
 but we encountered issues with linux incompatibility and decided to switch this
 module over to use the same watch as the rest of the opine ecosystem.
 
-Also note that currently this module does not support browserify transforms. 
-This is a planned feature but not a high priority one as we currently don't 
-make much use of browserify transforms at Thick. Pull requests are welcome if
-you'd like to expedite this (or any) feature!
+### Babelify
+
+If you want to apply Babelify transforms, configure `opine.scripts.transforms`
+to be an array of the names of the presets you want to apply.
+
+```js
+opine: {
+    scripts: {
+        transforms: ['es2015']
+    }
+}
+```
+
+Note that Babelify and its presets are NOT included as dependencies of 
+opine-scripts; you will need to install them yourself (for the example above,
+you'd need to add the `babelify` and `babel-preset-es2015` packages to your
+project).
