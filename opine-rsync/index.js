@@ -16,6 +16,7 @@ var exclude = module.getConfig('exclude', [
 var dest = module.getConfig('dest', '/var/www/html');
 var source = module.getConfig('source', '.');
 var root = module.getConfig('root', '.');
+var links = module.getConfig('links', false);
 
 module.task(function() {
     return gulp.src(source)
@@ -25,6 +26,7 @@ module.task(function() {
             root: root,
             hostname: host,
             username: user,
-            destination: dest
+            destination: dest,
+            links: links
         }));
 });

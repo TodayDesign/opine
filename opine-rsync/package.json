@@ -1,6 +1,6 @@
 {
   "name": "opine-rsync",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An opine module to sync the project directory to a remote server",
   "main": "index.js",
   "scripts": {
